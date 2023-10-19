@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xieyi.Logging.File", "src\X
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2B62C8C4-43B0-48DE-B544-03A3FCDD1260}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6B738F51-56E7-4604-B8C0-8030FC7CF166}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xieyi.Logging.File.Test", "test\Xieyi.Logging.File.Test\Xieyi.Logging.File.Test.csproj", "{322AC37B-5281-4B00-AA30-FC0BC729467E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,8 +18,13 @@ Global
 		{56C30185-B633-4CA2-9FB1-2370ACAA874A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56C30185-B633-4CA2-9FB1-2370ACAA874A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56C30185-B633-4CA2-9FB1-2370ACAA874A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322AC37B-5281-4B00-AA30-FC0BC729467E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322AC37B-5281-4B00-AA30-FC0BC729467E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322AC37B-5281-4B00-AA30-FC0BC729467E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322AC37B-5281-4B00-AA30-FC0BC729467E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{56C30185-B633-4CA2-9FB1-2370ACAA874A} = {2B62C8C4-43B0-48DE-B544-03A3FCDD1260}
+		{322AC37B-5281-4B00-AA30-FC0BC729467E} = {6B738F51-56E7-4604-B8C0-8030FC7CF166}
 	EndGlobalSection
 EndGlobal

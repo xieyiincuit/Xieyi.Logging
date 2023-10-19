@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace Xieyi.Logging.File;
 
 public class Logger : ILogger
@@ -12,18 +10,7 @@ public class Logger : ILogger
         _logName = logName;
         _fileLoggerProvider = fileLoggerProvider;
     }
-
-    private string GetShortLogLevel(LogLevel logLevel)
-    {
-        return logLevel switch
-        {
-            LogLevel.Information => "info",
-            LogLevel.Warning => "warn",
-            LogLevel.Critical => "crit",
-            _ => logLevel.ToString().ToLower()
-        };
-    }
-
+    
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
     {
         if (!IsEnabled(logLevel)) return;
@@ -77,5 +64,16 @@ public class Logger : ILogger
     public IDisposable BeginScope<TState>(TState state) where TState : notnull
     {
         return null;
+    }
+    
+    private string GetShortLogLevel(LogLevel logLevel)
+    {
+        return logLevel switch
+        {
+            LogLevel.Information => "info",
+            LogLevel.Warning => "warn",
+            LogLevel.Critical => "crit",
+            _ => logLevel.ToString().ToUpper()
+        };
     }
 }
