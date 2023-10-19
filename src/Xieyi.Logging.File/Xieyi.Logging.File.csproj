@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="FileLoggerProvider.FileError.cs">
+        <DependentUpon>LoggerProvider.cs</DependentUpon>
+      </Compile>
+      <Compile Update="FileLoggerProvider.FileWriter.cs">
+        <DependentUpon>LoggerProvider.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>
