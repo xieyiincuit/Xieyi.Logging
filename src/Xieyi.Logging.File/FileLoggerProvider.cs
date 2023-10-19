@@ -97,7 +97,7 @@ public partial class FileLoggerProvider : ILoggerProvider
         try
         {
             //尽量保证当前任务线程完成日志的记录
-            processQueueTask.Wait(2000);
+            processQueueTask.Wait(1500);
         }
         catch (TaskCanceledException) { }
         catch (AggregateException ex) when (ex.InnerExceptions.Count == 1 && ex.InnerExceptions.First() is TaskCanceledException) { }
