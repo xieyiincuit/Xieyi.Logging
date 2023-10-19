@@ -8,7 +8,7 @@ public partial class FileLoggerProvider
         
         private string _logFileName;
         private FileStream _logFileStream;
-        private StreamWriter _logFileWriter;
+        private TextWriter _logFileWriter;
         
         //缓存上一次的LogFileName，用于检测LogFileName是否变化
         private string _lastBaseLogFileName;
@@ -16,8 +16,11 @@ public partial class FileLoggerProvider
         internal FileWriter(FileLoggerProvider fileLoggerProvider)
         {
             _fileLoggerProvider = fileLoggerProvider;
+            
             //确定写入文件
             ConfirmLogFileName();
+            //打开文件流
+            OpenFile(_fileLoggerProvider.Options.FileWriteOption);
         }
 
         /// <summary>
