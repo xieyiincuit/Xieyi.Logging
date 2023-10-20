@@ -36,8 +36,9 @@ public class Logger : ILogger
                 var timeStamp = _fileLoggerProvider.UseUtcTimestamp ? DateTime.UtcNow : DateTime.Now;
 
                 logBuilder.Append(timeStamp.ToString("O"));
-                logBuilder.Append('\t');
+                logBuilder.Append("\t[");
                 logBuilder.Append(GetShortLogLevel(logLevel));
+                logBuilder.Append(']');
                 logBuilder.Append("\t[");
                 logBuilder.Append(_logName);
                 logBuilder.Append(']');
@@ -70,9 +71,9 @@ public class Logger : ILogger
     {
         return logLevel switch
         {
-            LogLevel.Information => "info",
-            LogLevel.Warning => "warn",
-            LogLevel.Critical => "crit",
+            LogLevel.Information => "INFO",
+            LogLevel.Warning => "WARN",
+            LogLevel.Critical => "CRIT",
             _ => logLevel.ToString().ToUpper()
         };
     }
