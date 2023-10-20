@@ -1,0 +1,6 @@
+/src/Xieyi.Logging.File/obj/*
+/src/Xieyi.Logging.File/bin/*
+/test/Xieyi.Logging.File.Test/obj/*
+/test/Xieyi.Logging.File.Test/bin/*
+/Xieyi.Logging.sln.DotSettings.user
+*.cache
