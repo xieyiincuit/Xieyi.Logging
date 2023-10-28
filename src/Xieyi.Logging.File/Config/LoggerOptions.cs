@@ -54,10 +54,10 @@ public class LoggerOptions
     public LogLevel MinLevel { get; set; } = LogLevel.Trace;
     
     /// <summary>
-    /// Custom formatter for the log file name.
+    /// 日志文件自定义Handler
     /// </summary>
-    /// <remarks>By specifying custom formatting handler you can define your own criteria for creation of log files. Note that this handler is called
-    /// on EVERY log message 'write'; you may cache the log file name calculation in your handler to avoid any potential overhead in case of high-load logger usage.
+    /// <remarks>
+    /// 指定具体的文件重命名逻辑，这个方法在LogProvider的每次Write方法前都会执行。使用此方法可以避免文件的覆盖和相同文件频繁被加载的问题。
     /// For example:
     /// </remarks>
     /// <example>
@@ -68,10 +68,10 @@ public class LoggerOptions
     public Func<string, string> FormatLogFileName { get; set; }
     
     /// <summary>
-    /// Custom handler for log file errors.
+    /// 自定义日志错误处理逻辑
     /// </summary>
-    /// <remarks>If this handler is provided file open exception (on <code>FileLoggerProvider</code> creation) will be suppressed.
-    /// You can handle file error exception according to your app's logic, and propose an alternative log file name (if you want to keep file logger working).
+    /// <remarks>
+    /// 可以自定义日志错误逻辑，当记录日志出现错误的时候，根据当前业务Scope做出正确的记录。在记录时可以使用一个备选文件进行日志的记录，使业务日志与日志记录异常具有隔离性。
     /// </remarks>
     /// <example>
     /// fileLoggerOpts.HandleFileError = (err) => {
