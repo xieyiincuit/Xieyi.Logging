@@ -57,14 +57,47 @@ services.AddLogging(loggingBuilder => {
 	});
 });
 ```
-需要注意的是：文件重命名逻辑，在LogProvider的每次Write方法前都会执行。因此我们最好将名称的计算结果缓存到本地，避免频繁写入造成的计算开销。
+需要注意的是：文件重命名逻辑，在 Logger 的每次 Write 方法前都会执行。因此我们最好将名称的计算结果缓存到本地，避免频繁写入造成的计算开销。
 
 ### 自定义日志记录格式
-
+你可以特殊指定 `FileLoggerOptions.FormatLogEntry` 委托来自定义日志的输出内容。 例如，可以将日志信息记录为 JSON 数组格式：
+```
+loggingBuilder.AddFile("logs/app.js", fileLoggerOpts => {
+	fileLoggerOpts.FormatLogEntry = (msg) => {
+		var sb = new System.Text.StringBuilder();
+		StringWriter sw = new StringWriter(sb);
+		var jsonWriter = new Newtonsoft.Json.JsonTextWriter(sw);
+		jsonWriter.WriteStartArray();
+		jsonWriter.WriteValue(DateTime.Now.ToString("o"));
+		jsonWriter.WriteValue(msg.LogLevel.ToString());
+		jsonWriter.WriteValue(msg.LogName);
+		jsonWriter.WriteValue(msg.EventId.Id);
+		jsonWriter.WriteValue(msg.Message);
+		jsonWriter.WriteValue(msg.Exception?.ToString());
+		jsonWriter.WriteEndArray();
+		return sb.ToString();
+	}
+});
+```
 
 ### 自定义日志记录过滤器
-
+我们可以定义日志类型 Filter 的 Predicate ，在日志写入时进行逻辑判断，决定该日志信息是否可以写入 logger 指定的文件。我们可以使用此逻辑将业务中不同类型的日志信息分发到不同的文件中。当多个logger 对某个信息进行写入时，该信息只会被写入满足 Filter 条件 logger 指定的日志文件。
+```
+loggingBuilder.AddFile("logs/errors_only.log", fileLoggerOpts => {
+	fileLoggerOpts.FilterLogEntry = (msg) => {
+		return msg.LogLevel == LogLevel.Error;
+	}
+});
+```
 
 ### 日志记录错误处理
-
-
+`FileLoggerProvider` 实例被创建时（也即是`AddFile`被调用时）会同时打开日志文件。无论是文件流 Open 环节，还是 Stream 的写入环境，都可能出现IO异常。若我们想要简单处理该类型异常时，我们可以使用 `try .. catch` 包裹代码处理。但如果遇到我们无法处理的异常，这个时候日志文件可能会处于不可用的状态，此时我们可以指定一个新的文件地址进行写入，来保证一定的可用性。
+你可以使用以下委托来建立备选文件地址，防止原始文件不可用的情况：
+```
+loggingBuilder.AddFile(loggingSection, fileLoggerOpts => {
+	fileLoggerOpts.HandleFileError = (err) => {
+		err.UseNewLogFileName( Path.GetFileNameWithoutExtension(err.LogFileName)+ "_alt" + Path.GetExtension(err.LogFileName) );
+	};
+});
+```
+然而，在使用时我们可能遇到更加复杂的场景，导致我们的备选日志文件也无法被使用，那么这个时候并不会递归的去创建新的备选文件，而是不进行任何日志记录。
