@@ -1,5 +1,5 @@
 # Xieyi.Logging
-基于 .NET7 的一款简单有效的日志处理框架，并遵循 Microsoft.Extension.Logging 的规约。
+基于 .NET 7 的一款简单有效的日志处理框架，并遵循 Microsoft.Extension.Logging 的规约。
 
 ## Xieyi.Logging.File
 - 它的用法和标准的 ConsoleLogger 非常相似，可将日志信息写入本地文件
@@ -42,5 +42,5 @@ services.AddLogging(loggingBuilder => {
 
 ### Rolling File
 当 `FileLoggerOptions` 属性中: `FileSizeLimitBytes` 和 `MaxRollingFiles` 被正确设置后，该功能将会启用. 我们假设我们的默认日志文件名为"test.log":
-- 如果只有 `FileSizeLimitBytes` 被特别指定为某个数量，那么 logger 在当前指定日志文件接近 `FileSizeLimitBytes` 设置的值时，将会创建 "test.log", "test1.log", "test2.log" 等等日志文件进行日志的写入。
-- 在 `FileSizeLimitBytes` 的基础上，通过设置 `MaxRollingFiles` 来限制日志文件产生的总量; 若该值为“3”那么 logger 将创建 "test.log", "test1.log", "test2.log"，在 “test2.log” 到达限制后，将会使用 "test.log" 继续记录日志信息，而 "test1.log" 中的旧有信息将会被覆盖。
+- 如果只有 `FileSizeLimitBytes` 被特别指定为某个数量，那么 logger 在当前指定日志文件大小接近 `FileSizeLimitBytes` 设置的值时，将会创建 "test.log", "test1.log", "test2.log" 等等日志文件进行写入。
+- 在 `FileSizeLimitBytes` 的基础上，通过设置 `MaxRollingFiles` 来限制日志文件产生的总量; 若该值为“3”那么 logger 将创建 "test.log", "test1.log", "test2.log"，在 “test2.log” 大小到达限制后，将会使用 "test.log" 继续记录日志信息，而 "test.log" 中的旧有信息将会被覆盖。
