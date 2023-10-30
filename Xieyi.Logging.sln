@@ -8,6 +8,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6B738F51-5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xieyi.Logging.File.Test", "test\Xieyi.Logging.File.Test\Xieyi.Logging.File.Test.csproj", "{322AC37B-5281-4B00-AA30-FC0BC729467E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example", "example", "{16580B00-C396-47B9-8773-559E58A40FB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIWithLogging", "example\WebAPIWithLogging\WebAPIWithLogging.csproj", "{B68A2281-FCAD-48A3-9A6E-6F22011E6FFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,9 +26,14 @@ Global
 		{322AC37B-5281-4B00-AA30-FC0BC729467E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{322AC37B-5281-4B00-AA30-FC0BC729467E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{322AC37B-5281-4B00-AA30-FC0BC729467E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B68A2281-FCAD-48A3-9A6E-6F22011E6FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B68A2281-FCAD-48A3-9A6E-6F22011E6FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B68A2281-FCAD-48A3-9A6E-6F22011E6FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B68A2281-FCAD-48A3-9A6E-6F22011E6FFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{56C30185-B633-4CA2-9FB1-2370ACAA874A} = {2B62C8C4-43B0-48DE-B544-03A3FCDD1260}
 		{322AC37B-5281-4B00-AA30-FC0BC729467E} = {6B738F51-56E7-4604-B8C0-8030FC7CF166}
+		{B68A2281-FCAD-48A3-9A6E-6F22011E6FFF} = {16580B00-C396-47B9-8773-559E58A40FB5}
 	EndGlobalSection
 EndGlobal
