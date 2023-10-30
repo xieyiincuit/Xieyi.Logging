@@ -57,7 +57,7 @@ public class LoggerOptions
     /// 日志文件自定义Handler
     /// </summary>
     /// <remarks>
-    /// 指定具体的文件重命名逻辑，这个方法在LogProvider的每次Write方法前都会执行。使用此方法可以避免文件的覆盖和相同文件频繁被加载的问题。
+    /// 指定具体的文件重命名逻辑，这个方法在LogProvider的每次Write方法前都会执行。因此我们最好将名称的计算结果缓存到本地，避免频繁写入造成的计算开销。
     /// For example:
     /// </remarks>
     /// <example>
