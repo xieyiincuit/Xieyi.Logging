@@ -201,7 +201,10 @@ public class FileLoggerProviderTest
             var tempFile = Path.Combine(testDirectory, "test.log");
 
             var logFactory = new LoggerFactory();
-            logFactory.AddFileLogger(tempFile, options => { options.FilterLogEntry = messageEntity => messageEntity.LogLevel > LogLevel.Information && messageEntity.EventId.Id != 0; });
+            logFactory.AddFileLogger(tempFile, options =>
+            {
+                options.FilterLogEntry = messageEntity => messageEntity.LogLevel > LogLevel.Information && messageEntity.EventId.Id != 0;
+            });
             var logger = logFactory.CreateLogger("filter");
 
             //不满足Filter条件，被过滤
