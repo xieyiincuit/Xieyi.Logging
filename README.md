@@ -4,18 +4,18 @@
 ## Xieyi.Logging.File
 - 它的用法和标准的 ConsoleLogger 非常相似，可将日志信息写入本地文件
 - 在写入时可以选择“追加” or “覆盖”两种写入行为
-- 支持 “RollingFile” 模式来控制日志文件的个数和占用内存大小
-- 运行途中可以即时更改日志文件名
+- 支持 “RollingFile” 模式来控制日志文件的个数和日志文件大小
+- 可自定义的日志文件名
 - 内部使用线程安全的队列实现日志记录，避免线程阻塞，具有一定的并发性能
 
 ### 使用示例
-在StartUp.cs中初始化该服务
+在StartUp.cs中简单初始化该服务
 ```
 services.AddLogging(loggingBuilder => {
 	loggingBuilder.AddFile("app.log", FileWriteOption.Append);
 });
 ```
-或者使用appsettings.json完成配置
+使用appsettings.json完成配置
 ```
 services.AddLogging(loggingBuilder => {
 	var loggingSection = Configuration.GetSection("Logging");
@@ -46,7 +46,7 @@ services.AddLogging(loggingBuilder => {
 - 在 `FileSizeLimitBytes` 的基础上，通过设置 `MaxRollingFiles` 来限制日志文件产生的总量; 若该值为“3”那么 logger 将创建 "test.log", "test1.log", "test2.log"，在 “test2.log” 大小到达限制后，将会使用 "test.log" 继续记录日志信息，而 "test.log" 中的旧有信息将会被覆盖。
 
 ### 即时更改的日志文件名称
-可以使用 `FileLoggerOptions` 属性中的 `FormatLogFileName` 来自定义日志文件名。 日志文件名可以会随着时间的推移而改变。
+可以使用 `FileLoggerOptions` 属性中的 `FormatLogFileName` 来自定义日志文件名。日志文件名可以随着时间的推移而改变。
 例如，每天创建一个新的日志文件：
 ```
 services.AddLogging(loggingBuilder => {
